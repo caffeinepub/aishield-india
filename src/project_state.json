@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "AIShield India web application with Google Analytics and Search Console integration",
+  "architectural_notes": [
+    "Google Analytics integration for visitor tracking and analytics",
+    "Google Search Console integration for search performance monitoring",
+    "Access control configured for Analytics dashboard and Search Console permissions"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-install-google-analytics-tracking-code-in-the-frontend-application-with-proper-initialization-in-the-main-entry-point-or-root-layout-component",
+      "title": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point or root layout component",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-google-search-console-verification-meta-tag-to-frontend-index-html-to-enable-console-access",
+      "title": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-documentation-file-with-instructions-for-granting-google-analytics-dashboard-access-and-google-search-console-permissions-to-the-project-owner-including-steps-to-obtain-and-securely-share-admin-credentials",
+      "title": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner, including steps to obtain and securely share admin credentials",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Install Google Analytics with dashboard access",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add Google Search Console with permissions",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "AIShield India",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,73 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-install-google-analytics-tracking-code-in-the-frontend-application-with-proper-initialization-in-the-main-entry-point-or-root-layout-component",
+      "featureTitle": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point or root layout component",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-google-search-console-verification-meta-tag-to-frontend-index-html-to-enable-console-access",
+      "featureTitle": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "files": [
+        "frontend/index.html"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-documentation-file-with-instructions-for-granting-google-analytics-dashboard-access-and-google-search-console-permissions-to-the-project-owner-including-steps-to-obtain-and-securely-share-admin-credentials",
+      "featureTitle": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner, including steps to obtain and securely share admin credentials",
+      "files": [
+        "frontend/ANALYTICS_SETUP.md",
+        "frontend/src/pages/admin/CredentialsManagement.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

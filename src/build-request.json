@@ -1,0 +1,77 @@
+{
+  "kind": "build_request",
+  "title": "Install Google Analytics and Google Search Console with admin access",
+  "projectName": "AIShield India",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point or root layout component",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "Install Google analytics"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Google Analytics tracking script is loaded in the application",
+        "Page views are tracked automatically on route changes",
+        "Analytics respects user consent as per DPDP Act 2023 compliance requirements"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "add search console"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Google Search Console verification meta tag is present in the HTML head section",
+        "Verification can be completed through the meta tag method"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner, including steps to obtain and securely share admin credentials",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "Share Analytics dashboard access, grant console permission and admin creds only to me"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Documentation includes step-by-step instructions for adding users to Google Analytics with appropriate role permissions",
+        "Documentation includes instructions for granting Search Console property access",
+        "Documentation explains how to securely generate and share admin credentials",
+        "Documentation specifies that access should be restricted to the project owner only"
+      ]
+    }
+  ],
+  "constraints": [
+    "Maintain compliance with India's Digital Personal Data Protection Act 2023",
+    "Do not modify existing backend authentication or authorization logic",
+    "Do not change existing security headers configuration in frontend/public/_headers"
+  ],
+  "nonGoals": [
+    "Implementing custom analytics tracking beyond standard Google Analytics functionality",
+    "Building a custom admin panel for analytics data visualization",
+    "Integrating other analytics platforms besides Google Analytics",
+    "Modifying existing contact forms or lead tracking beyond adding analytics events"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

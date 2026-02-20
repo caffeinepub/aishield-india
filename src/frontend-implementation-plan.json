@@ -1,0 +1,65 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Install Google Analytics and Google Search Console with admin access",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point",
+      "acceptanceCriteria": [
+        "Google Analytics tracking script is loaded in the application",
+        "Page views are tracked automatically on route changes",
+        "Analytics respects user consent as per DPDP Act 2023 compliance requirements"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add Google Analytics gtag.js script in the <head> section with async loading. Include the GA measurement ID configuration and page_view event initialization. Ensure the script respects user consent requirements per DPDP Act 2023 by adding consent mode configuration before gtag initialization."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route change tracking using TanStack Router's router.subscribe method to send pageview events to Google Analytics on navigation. Import the router instance and set up a subscription that triggers gtag('event', 'page_view') with the current pathname whenever the route changes. Ensure this tracking respects the consent state established in the HTML head."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "acceptanceCriteria": [
+        "Google Search Console verification meta tag is present in the HTML head section",
+        "Verification can be completed through the meta tag method"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add Google Search Console verification meta tag in the <head> section with name='google-site-verification' and content attribute containing the verification token placeholder (to be replaced with actual verification code from Google Search Console by the admin)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner",
+      "acceptanceCriteria": [
+        "Documentation includes step-by-step instructions for adding users to Google Analytics with appropriate role permissions",
+        "Documentation includes instructions for granting Search Console property access",
+        "Documentation explains how to securely generate and share admin credentials",
+        "Documentation specifies that access should be restricted to the project owner only"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/ANALYTICS_SETUP.md",
+          "operation": "create",
+          "description": "Create comprehensive documentation with sections covering: (1) Google Analytics setup including obtaining the GA4 measurement ID, replacing the placeholder in index.html, and adding users with 'Administrator' role via Admin > Property > Property Access Management; (2) Google Search Console setup including obtaining the verification meta tag content, replacing the placeholder in index.html, verifying ownership, and adding users with 'Owner' permission via Settings > Users and permissions; (3) Security best practices for credential management emphasizing that dashboard access should be restricted to the project owner only and explaining how to securely share access tokens if needed; (4) Compliance notes regarding DPDP Act 2023 consent requirements already implemented in the tracking code."
+        },
+        {
+          "path": "frontend/src/pages/admin/CredentialsManagement.tsx",
+          "operation": "modify",
+          "description": "Add a new section in the admin credentials management page for 'Analytics & SEO Setup' that displays a read-only informational card linking to the ANALYTICS_SETUP.md documentation. Include a button or link that opens the documentation file path in a new browser tab, with a description stating 'View instructions for configuring Google Analytics and Search Console access for the project owner.' This provides admin users easy access to the setup documentation from within the admin panel."
+        }
+      ]
+    }
+  ]
+}
