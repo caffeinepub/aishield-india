@@ -1,63 +1,134 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Install Google Analytics and Google Search Console with admin access",
+  "title": "Install LinkedIn Insight Tag and Meta Pixel with conversion tracking",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point",
+      "summary": "Install LinkedIn Insight Tag in the frontend HTML with partner ID placeholder, ensuring proper initialization script and noscript fallback pixel",
       "acceptanceCriteria": [
-        "Google Analytics tracking script is loaded in the application",
-        "Page views are tracked automatically on route changes",
-        "Analytics respects user consent as per DPDP Act 2023 compliance requirements"
+        "LinkedIn Insight Tag script is added to frontend/index.html with partner ID placeholder format _linkedin_partner_id = \"XXXXXXX\"",
+        "Script includes proper initialization code and noscript fallback img pixel",
+        "Content Security Policy in frontend/public/_headers is updated to allow LinkedIn domains (px.ads.linkedin.com, www.linkedin.com)"
       ],
       "file_operations": [
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Add Google Analytics gtag.js script in the <head> section with async loading. Include the GA measurement ID configuration and page_view event initialization. Ensure the script respects user consent requirements per DPDP Act 2023 by adding consent mode configuration before gtag initialization."
+          "description": "Add LinkedIn Insight Tag script in the <head> section after the existing Google Analytics script. Include the base tracking code with placeholder partner ID (_linkedin_partner_id = \"XXXXXXX\"), initialization script, and noscript fallback img pixel in the <body> section. Preserve all existing scripts including Google Analytics."
         },
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/public/_headers",
           "operation": "modify",
-          "description": "Add route change tracking using TanStack Router's router.subscribe method to send pageview events to Google Analytics on navigation. Import the router instance and set up a subscription that triggers gtag('event', 'page_view') with the current pathname whenever the route changes. Ensure this tracking respects the consent state established in the HTML head."
+          "description": "Update the Content-Security-Policy header to include LinkedIn tracking domains. Add 'px.ads.linkedin.com' to script-src and connect-src directives, and add 'www.linkedin.com' to img-src directive. Maintain the existing CSP structure and all current domain allowances."
         }
       ]
     },
     {
       "id": "REQ-2",
-      "summary": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "summary": "Implement LinkedIn conversion tracking for Advisory Application submission with conversion ID placeholder",
       "acceptanceCriteria": [
-        "Google Search Console verification meta tag is present in the HTML head section",
-        "Verification can be completed through the meta tag method"
+        "LinkedIn conversion tracking pixel fires on successful advisory application submission in SecurityAdvisory.tsx",
+        "Conversion event includes placeholder conversion ID format window.lintrk('track', { conversion_id: XXXXXXX })",
+        "Tracking only fires after successful form submission, not on page load"
       ],
       "file_operations": [
         {
-          "path": "frontend/index.html",
+          "path": "frontend/src/pages/SecurityAdvisory.tsx",
           "operation": "modify",
-          "description": "Add Google Search Console verification meta tag in the <head> section with name='google-site-verification' and content attribute containing the verification token placeholder (to be replaced with actual verification code from Google Search Console by the admin)."
+          "description": "Add LinkedIn conversion tracking after successful form submission in the useSubmitAdvisoryApplication mutation's onSuccess callback. Call window.lintrk('track', { conversion_id: XXXXXXX }) with a placeholder conversion ID. Add TypeScript declaration for window.lintrk if needed. Ensure tracking fires only after successful submission and before navigation to confirmation page."
         }
       ]
     },
     {
       "id": "REQ-3",
-      "summary": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner",
+      "summary": "Implement LinkedIn conversion tracking for Strategy Call Click with conversion ID placeholder",
       "acceptanceCriteria": [
-        "Documentation includes step-by-step instructions for adding users to Google Analytics with appropriate role permissions",
-        "Documentation includes instructions for granting Search Console property access",
-        "Documentation explains how to securely generate and share admin credentials",
-        "Documentation specifies that access should be restricted to the project owner only"
+        "LinkedIn conversion tracking pixel fires when strategy call CTA buttons are clicked in Header.tsx and Home.tsx",
+        "Conversion event includes placeholder conversion ID",
+        "Tracking fires before navigation to Calendly link"
       ],
       "file_operations": [
         {
-          "path": "frontend/ANALYTICS_SETUP.md",
-          "operation": "create",
-          "description": "Create comprehensive documentation with sections covering: (1) Google Analytics setup including obtaining the GA4 measurement ID, replacing the placeholder in index.html, and adding users with 'Administrator' role via Admin > Property > Property Access Management; (2) Google Search Console setup including obtaining the verification meta tag content, replacing the placeholder in index.html, verifying ownership, and adding users with 'Owner' permission via Settings > Users and permissions; (3) Security best practices for credential management emphasizing that dashboard access should be restricted to the project owner only and explaining how to securely share access tokens if needed; (4) Compliance notes regarding DPDP Act 2023 consent requirements already implemented in the tracking code."
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Add LinkedIn conversion tracking to the strategy call CTA button click handler. Fire window.lintrk('track', { conversion_id: XXXXXXX }) with placeholder conversion ID before opening the Calendly link. Ensure tracking completes before navigation."
         },
         {
-          "path": "frontend/src/pages/admin/CredentialsManagement.tsx",
+          "path": "frontend/src/pages/Home.tsx",
           "operation": "modify",
-          "description": "Add a new section in the admin credentials management page for 'Analytics & SEO Setup' that displays a read-only informational card linking to the ANALYTICS_SETUP.md documentation. Include a button or link that opens the documentation file path in a new browser tab, with a description stating 'View instructions for configuring Google Analytics and Search Console access for the project owner.' This provides admin users easy access to the setup documentation from within the admin panel."
+          "description": "Add LinkedIn conversion tracking to all strategy call CTA buttons/links on the homepage. Fire window.lintrk('track', { conversion_id: XXXXXXX }) with placeholder conversion ID before navigation to Calendly. Ensure consistent tracking across all strategy call entry points on the page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement LinkedIn conversion tracking for Toolkit Purchase with conversion ID placeholder and order value",
+      "acceptanceCriteria": [
+        "LinkedIn conversion tracking pixel fires on PaymentSuccess.tsx page load",
+        "Conversion event includes placeholder conversion ID and order value if available from URL parameters",
+        "Tracking fires only once per successful payment"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PaymentSuccess.tsx",
+          "operation": "modify",
+          "description": "Add LinkedIn conversion tracking in a useEffect hook that fires on component mount. Parse URL parameters to extract order value if available using the urlParams utility. Call window.lintrk('track', { conversion_id: XXXXXXX, conversion_value: orderValue }) with placeholder conversion ID and dynamic order value. Use a ref or flag to ensure tracking fires only once per page load."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement LinkedIn conversion tracking for Checklist Download with conversion ID placeholder",
+      "acceptanceCriteria": [
+        "LinkedIn conversion tracking pixel fires on successful checklist download submission in FreeChecklist.tsx",
+        "Conversion event includes placeholder conversion ID",
+        "Tracking only fires after successful lead capture, not on page load"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/FreeChecklist.tsx",
+          "operation": "modify",
+          "description": "Add LinkedIn conversion tracking after successful checklist download submission in the useRecordLeadDownload mutation's onSuccess callback. Call window.lintrk('track', { conversion_id: XXXXXXX }) with placeholder conversion ID. Ensure tracking fires only after successful lead capture and before showing the success state."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Install Meta Pixel in the frontend HTML with pixel ID placeholder for future ad tracking",
+      "acceptanceCriteria": [
+        "Meta Pixel base code is added to frontend/index.html with pixel ID placeholder format fbq('init', 'XXXXXXXXXXXXXXX')",
+        "Script includes proper initialization with fbq('track', 'PageView')",
+        "Content Security Policy in frontend/public/_headers is updated to allow Meta domains (connect.facebook.net, www.facebook.com)",
+        "Noscript fallback img pixel is included"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Add Meta Pixel script in the <head> section after the LinkedIn Insight Tag. Include the base code with fbq function initialization, fbq('init', 'XXXXXXXXXXXXXXX') with placeholder pixel ID, fbq('track', 'PageView') for automatic page view tracking, and noscript fallback img pixel in the <body> section. Preserve all existing tracking scripts."
+        },
+        {
+          "path": "frontend/public/_headers",
+          "operation": "modify",
+          "description": "Update the Content-Security-Policy header to include Meta/Facebook tracking domains. Add 'connect.facebook.net' to script-src and connect-src directives, and add 'www.facebook.com' to img-src directive. Maintain the existing CSP structure and all current domain allowances including the LinkedIn domains from REQ-1."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Create setup documentation file explaining how to configure LinkedIn Insight Tag partner ID, conversion IDs, and Meta Pixel ID with step-by-step instructions",
+      "acceptanceCriteria": [
+        "Documentation file TRACKING_SETUP.md is created in frontend directory",
+        "Instructions include where to find LinkedIn partner ID and conversion IDs in LinkedIn Campaign Manager",
+        "Instructions include where to find Meta Pixel ID in Meta Events Manager",
+        "Documentation lists all placeholder values that need replacement and their locations in the codebase"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/TRACKING_SETUP.md",
+          "operation": "create",
+          "description": "Create comprehensive documentation for configuring LinkedIn Insight Tag and Meta Pixel. Include sections for: (1) LinkedIn Insight Tag setup with instructions to find partner ID in LinkedIn Campaign Manager and replace XXXXXXX placeholder in index.html; (2) LinkedIn conversion tracking setup with instructions to create conversion events and replace XXXXXXX placeholders in SecurityAdvisory.tsx, Header.tsx, Home.tsx, PaymentSuccess.tsx, and FreeChecklist.tsx; (3) Meta Pixel setup with instructions to find pixel ID in Meta Events Manager and replace XXXXXXXXXXXXXXX placeholder in index.html; (4) verification steps to test that tracking is working; (5) complete reference table listing all placeholder locations and their purposes. Follow the same structure and style as the existing ANALYTICS_SETUP.md file."
         }
       ]
     }

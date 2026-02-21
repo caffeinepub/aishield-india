@@ -1,12 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Install Google Analytics and Google Search Console with admin access restricted to the project owner.
+**Goal:** Install LinkedIn Insight Tag and Meta Pixel with conversion tracking for key user actions.
 
 **Planned changes:**
-- Add Google Analytics tracking code to the frontend application with automatic page view tracking
-- Insert Google Search Console verification meta tag in the HTML head
-- Create documentation explaining how to grant Analytics dashboard access, Search Console permissions, and securely share admin credentials to the project owner only
-- Ensure analytics tracking respects user consent in compliance with DPDP Act 2023
+- Add LinkedIn Insight Tag to frontend HTML with partner ID placeholder
+- Implement LinkedIn conversion tracking for Advisory Application submission, Strategy Call clicks, Toolkit purchases, and Checklist downloads with conversion ID placeholders
+- Add Meta Pixel to frontend HTML with pixel ID placeholder for future ad tracking
+- Update Content Security Policy to allow LinkedIn and Meta domains
+- Create TRACKING_SETUP.md documentation with instructions for configuring tracking IDs
 
-**User-visible outcome:** The website will have Google Analytics tracking enabled for monitoring traffic and user behavior, and Google Search Console will be set up for search performance insights. The project owner will receive documentation on how to access both platforms with full admin permissions.
+**User-visible outcome:** LinkedIn and Meta tracking pixels are installed and ready to track conversions once real IDs are configured. No visible UI changes for users.

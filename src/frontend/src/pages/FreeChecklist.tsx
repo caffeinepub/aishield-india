@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle2 } from 'lucide-react';
 import { useRecordLeadDownload } from '@/hooks/useQueries';
 import { toast } from 'sonner';
+import { trackLinkedInConversion } from '@/lib/tracking';
 
 export default function FreeChecklist() {
   const [email, setEmail] = useState('');
@@ -22,6 +23,10 @@ export default function FreeChecklist() {
 
     try {
       await recordLead.mutateAsync({ email, version: 'v1.0', source: 'Free Checklist Page' });
+      
+      // Fire LinkedIn conversion tracking
+      trackLinkedInConversion('XXXXXXX');
+      
       setSubmitted(true);
       toast.success('Success! Check your email for the checklist.');
     } catch (error) {

@@ -1,36 +1,68 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "AIShield India web application with Google Analytics and Search Console integration",
+  "summary": "Advisory/consulting business website with integrated analytics and conversion tracking",
   "architectural_notes": [
-    "Google Analytics integration for visitor tracking and analytics",
-    "Google Search Console integration for search performance monitoring",
-    "Access control configured for Analytics dashboard and Search Console permissions"
+    "Integrated Google Analytics (GA4) and Google Search Console for traffic monitoring",
+    "LinkedIn Insight Tag for B2B conversion tracking",
+    "Meta pixel integration for future advertising capabilities"
   ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-install-google-analytics-tracking-code-in-the-frontend-application-with-proper-initialization-in-the-main-entry-point-or-root-layout-component",
-      "title": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point or root layout component",
+      "id": "feature-install-linkedin-insight-tag-in-the-frontend-html-with-partner-id-placeholder-ensuring-proper-initialization-script-and-noscript-fallback-pixel",
+      "title": "Install LinkedIn Insight Tag in the frontend HTML with partner ID placeholder, ensuring proper initialization script and noscript fallback pixel",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-google-search-console-verification-meta-tag-to-frontend-index-html-to-enable-console-access",
-      "title": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "id": "feature-implement-linkedin-conversion-tracking-for-advisory-application-submission-with-conversion-id-placeholder",
+      "title": "Implement LinkedIn conversion tracking for Advisory Application submission with conversion ID placeholder",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-documentation-file-with-instructions-for-granting-google-analytics-dashboard-access-and-google-search-console-permissions-to-the-project-owner-including-steps-to-obtain-and-securely-share-admin-credentials",
-      "title": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner, including steps to obtain and securely share admin credentials",
+      "id": "feature-implement-linkedin-conversion-tracking-for-strategy-call-click-with-conversion-id-placeholder",
+      "title": "Implement LinkedIn conversion tracking for Strategy Call Click with conversion ID placeholder",
       "reqIds": [
         "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-linkedin-conversion-tracking-for-toolkit-purchase-with-conversion-id-placeholder-and-order-value",
+      "title": "Implement LinkedIn conversion tracking for Toolkit Purchase with conversion ID placeholder and order value",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-linkedin-conversion-tracking-for-checklist-download-with-conversion-id-placeholder",
+      "title": "Implement LinkedIn conversion tracking for Checklist Download with conversion ID placeholder",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-install-meta-pixel-in-the-frontend-html-with-pixel-id-placeholder-for-future-ad-tracking",
+      "title": "Install Meta Pixel in the frontend HTML with pixel ID placeholder for future ad tracking",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-setup-documentation-file-explaining-how-to-configure-linkedin-insight-tag-partner-id-conversion-ids-and-meta-pixel-id-with-step-by-step-instructions",
+      "title": "Create setup documentation file explaining how to configure LinkedIn Insight Tag partner ID, conversion IDs, and Meta Pixel ID with step-by-step instructions",
+      "reqIds": [
+        "REQ-7"
       ],
       "version": 1
     }
@@ -38,18 +70,18 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Install Google Analytics with dashboard access",
+      "summary": "Install LinkedIn Insight Tag with conversion tracking for advisory application, strategy call click, toolkit purchase, and checklist download",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Add Google Search Console with permissions",
+      "summary": "Install Meta pixel for future ad tracking",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "AIShield India",
+  "projectName": "Install LinkedIn Insight Tag and Meta Pixel with conversion tracking",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

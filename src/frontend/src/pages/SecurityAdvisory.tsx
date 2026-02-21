@@ -13,6 +13,7 @@ import { useSubmitAdvisoryApplication } from '@/hooks/useQueries';
 import { toast } from 'sonner';
 import { sanitizeText, validateEmail, validateURL, validateTextLength } from '@/utils/inputSanitization';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { trackLinkedInConversion } from '@/lib/tracking';
 
 export default function SecurityAdvisory() {
   const navigate = useNavigate();
@@ -123,6 +124,9 @@ export default function SecurityAdvisory() {
       };
 
       await submitApplication.mutateAsync(sanitizedData);
+      
+      // Fire LinkedIn conversion tracking
+      trackLinkedInConversion('XXXXXXX');
       
       toast.success('Application submitted successfully!');
       
@@ -358,7 +362,7 @@ export default function SecurityAdvisory() {
 
                   {/* Budget Range */}
                   <div>
-                    <Label htmlFor="estimatedBudgetRange">Budget Range (Optional)</Label>
+                    <Label htmlFor="estimatedBudgetRange">Estimated Budget Range (Optional)</Label>
                     <Input
                       id="estimatedBudgetRange"
                       type="text"
@@ -366,83 +370,47 @@ export default function SecurityAdvisory() {
                       onChange={(e) => handleInputChange('estimatedBudgetRange', e.target.value)}
                       placeholder="e.g., ₹50,000 - ₹1,00,000"
                     />
-                    <p className="text-xs text-gray-500 mt-1">
-                      Typical engagements range from ₹49,999 – ₹1,50,000
-                    </p>
                   </div>
 
-                  {/* Data Consent Checkbox */}
-                  <div className="flex items-start space-x-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                    <Checkbox
-                      id="consentGiven"
-                      checked={formData.consentGiven}
-                      onCheckedChange={(checked) => 
-                        setFormData((prev) => ({ ...prev, consentGiven: checked === true }))
-                      }
-                      className={errors.consentGiven ? 'border-red-500' : ''}
-                    />
-                    <div className="flex-1">
-                      <Label htmlFor="consentGiven" className="text-sm font-normal cursor-pointer">
-                        I consent to the collection and processing of my personal data as described in the{' '}
-                        <a href="/privacy-policy" target="_blank" className="text-emerald-600 hover:underline">
-                          Privacy Policy
-                        </a>
-                        , in accordance with the Digital Personal Data Protection Act, 2023 (India). *
-                      </Label>
-                      {errors.consentGiven && (
-                        <p className="text-sm text-red-600 mt-1">{errors.consentGiven}</p>
-                      )}
+                  {/* DPDP Act 2023 Consent */}
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-start space-x-3">
+                      <Checkbox
+                        id="consent"
+                        checked={formData.consentGiven}
+                        onCheckedChange={(checked) =>
+                          handleInputChange('consentGiven', checked === true ? 'true' : 'false')
+                        }
+                        className={errors.consentGiven ? 'border-red-500' : ''}
+                      />
+                      <div className="flex-1">
+                        <Label
+                          htmlFor="consent"
+                          className="text-sm text-gray-700 cursor-pointer leading-relaxed"
+                        >
+                          I consent to AIShield India collecting and processing my personal data as described in this
+                          form for the purpose of evaluating my advisory application. I understand my rights under the
+                          Digital Personal Data Protection Act 2023, including the right to access, correct, and delete
+                          my data. *
+                        </Label>
+                        {errors.consentGiven && (
+                          <p className="text-sm text-red-600 mt-2">{errors.consentGiven}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Info Alert */}
-                  <Alert>
-                    <AlertCircle className="h-4 w-4" />
-                    <AlertDescription>
-                      <strong>What happens next:</strong> We review all applications within 24-48 hours. If approved, you'll receive a scheduling link to book your strategy call.
-                    </AlertDescription>
-                  </Alert>
-
-                  {/* Submit Button */}
                   <Button
                     type="submit"
+                    size="lg"
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
                     disabled={submitApplication.isPending}
-                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3"
                   >
                     {submitApplication.isPending ? 'Submitting...' : 'Submit Application'}
                   </Button>
                 </form>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Application-Based */}
-      <section className="py-16 bg-white">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-navy mb-6">Why Application-Based?</h2>
-            <p className="text-gray-700 mb-8">
-              We work with a limited number of clients to ensure high-quality, personalized advisory. This qualification process helps us understand your needs and ensures we're the right fit for your security journey.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div>
-                <CheckCircle2 className="h-8 w-8 text-emerald-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-navy mb-2">Quality Over Volume</h3>
-                <p className="text-sm text-gray-600">Focused attention on each engagement</p>
-              </div>
-              <div>
-                <CheckCircle2 className="h-8 w-8 text-emerald-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-navy mb-2">Right Fit</h3>
-                <p className="text-sm text-gray-600">Ensure our expertise matches your needs</p>
-              </div>
-              <div>
-                <CheckCircle2 className="h-8 w-8 text-emerald-600 mx-auto mb-3" />
-                <h3 className="font-semibold text-navy mb-2">Premium Positioning</h3>
-                <p className="text-sm text-gray-600">Founder-level advisory, not mass consulting</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>

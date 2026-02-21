@@ -1,74 +1,148 @@
 {
   "kind": "build_request",
-  "title": "Install Google Analytics and Google Search Console with admin access",
-  "projectName": "AIShield India",
+  "title": "Install LinkedIn Insight Tag and Meta Pixel with conversion tracking",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point or root layout component",
+      "text": "Install LinkedIn Insight Tag in the frontend HTML with partner ID placeholder, ensuring proper initialization script and noscript fallback pixel",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-linkedin"
         ],
         "quotes": [
-          "Install Google analytics"
+          "Install LinkedIn Insight Tag"
         ]
       },
       "acceptanceCriteria": [
-        "Google Analytics tracking script is loaded in the application",
-        "Page views are tracked automatically on route changes",
-        "Analytics respects user consent as per DPDP Act 2023 compliance requirements"
+        "LinkedIn Insight Tag script is added to frontend/index.html with partner ID placeholder format _linkedin_partner_id = \"XXXXXXX\"",
+        "Script includes proper initialization code and noscript fallback img pixel",
+        "Content Security Policy in frontend/public/_headers is updated to allow LinkedIn domains (px.ads.linkedin.com, www.linkedin.com)"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "text": "Implement LinkedIn conversion tracking for Advisory Application submission with conversion ID placeholder",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-linkedin"
         ],
         "quotes": [
-          "add search console"
+          "Conversion tracking on: Advisory Application"
         ]
       },
       "acceptanceCriteria": [
-        "Google Search Console verification meta tag is present in the HTML head section",
-        "Verification can be completed through the meta tag method"
+        "LinkedIn conversion tracking pixel fires on successful advisory application submission in SecurityAdvisory.tsx",
+        "Conversion event includes placeholder conversion ID format window.lintrk('track', { conversion_id: XXXXXXX })",
+        "Tracking only fires after successful form submission, not on page load"
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner, including steps to obtain and securely share admin credentials",
-      "target": "both",
+      "text": "Implement LinkedIn conversion tracking for Strategy Call Click with conversion ID placeholder",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-linkedin"
         ],
         "quotes": [
-          "Share Analytics dashboard access, grant console permission and admin creds only to me"
+          "Conversion tracking on: Strategy Call Click"
         ]
       },
       "acceptanceCriteria": [
-        "Documentation includes step-by-step instructions for adding users to Google Analytics with appropriate role permissions",
-        "Documentation includes instructions for granting Search Console property access",
-        "Documentation explains how to securely generate and share admin credentials",
-        "Documentation specifies that access should be restricted to the project owner only"
+        "LinkedIn conversion tracking pixel fires when strategy call CTA buttons are clicked in Header.tsx and Home.tsx",
+        "Conversion event includes placeholder conversion ID",
+        "Tracking fires before navigation to Calendly link"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Implement LinkedIn conversion tracking for Toolkit Purchase with conversion ID placeholder and order value",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-linkedin"
+        ],
+        "quotes": [
+          "Conversion tracking on: Toolkit Purchase"
+        ]
+      },
+      "acceptanceCriteria": [
+        "LinkedIn conversion tracking pixel fires on PaymentSuccess.tsx page load",
+        "Conversion event includes placeholder conversion ID and order value if available from URL parameters",
+        "Tracking fires only once per successful payment"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement LinkedIn conversion tracking for Checklist Download with conversion ID placeholder",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-linkedin"
+        ],
+        "quotes": [
+          "Conversion tracking on: Checklist Download"
+        ]
+      },
+      "acceptanceCriteria": [
+        "LinkedIn conversion tracking pixel fires on successful checklist download submission in FreeChecklist.tsx",
+        "Conversion event includes placeholder conversion ID",
+        "Tracking only fires after successful lead capture, not on page load"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Install Meta Pixel in the frontend HTML with pixel ID placeholder for future ad tracking",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-linkedin"
+        ],
+        "quotes": [
+          "Meta pixel (if future ads planned)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Meta Pixel base code is added to frontend/index.html with pixel ID placeholder format fbq('init', 'XXXXXXXXXXXXXXX')",
+        "Script includes proper initialization with fbq('track', 'PageView')",
+        "Content Security Policy in frontend/public/_headers is updated to allow Meta domains (connect.facebook.net, www.facebook.com)",
+        "Noscript fallback img pixel is included"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Create setup documentation file explaining how to configure LinkedIn Insight Tag partner ID, conversion IDs, and Meta Pixel ID with step-by-step instructions",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-linkedin"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Documentation file TRACKING_SETUP.md is created in frontend directory",
+        "Instructions include where to find LinkedIn partner ID and conversion IDs in LinkedIn Campaign Manager",
+        "Instructions include where to find Meta Pixel ID in Meta Events Manager",
+        "Documentation lists all placeholder values that need replacement and their locations in the codebase"
       ]
     }
   ],
   "constraints": [
-    "Maintain compliance with India's Digital Personal Data Protection Act 2023",
-    "Do not modify existing backend authentication or authorization logic",
-    "Do not change existing security headers configuration in frontend/public/_headers"
+    "Do not modify backend/main.mo or any backend files",
+    "Do not edit frontend/src/hooks/useInternetIdentity.ts or frontend/src/hooks/useActor.ts",
+    "Preserve existing Google Analytics integration in frontend/index.html",
+    "Use placeholder values for LinkedIn partner ID, conversion IDs, and Meta Pixel ID",
+    "All tracking scripts must respect existing Content Security Policy structure"
   ],
   "nonGoals": [
-    "Implementing custom analytics tracking beyond standard Google Analytics functionality",
-    "Building a custom admin panel for analytics data visualization",
-    "Integrating other analytics platforms besides Google Analytics",
-    "Modifying existing contact forms or lead tracking beyond adding analytics events"
+    "Actual LinkedIn or Meta account setup",
+    "Real partner IDs or pixel IDs",
+    "Server-side conversion tracking",
+    "Custom audience creation",
+    "A/B testing setup",
+    "Advanced attribution modeling"
   ],
   "imageRequirements": {
     "required": [],

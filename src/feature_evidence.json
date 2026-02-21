@@ -2,11 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-install-google-analytics-tracking-code-in-the-frontend-application-with-proper-initialization-in-the-main-entry-point-or-root-layout-component",
-      "featureTitle": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point or root layout component",
+      "featureId": "feature-install-linkedin-insight-tag-in-the-frontend-html-with-partner-id-placeholder-ensuring-proper-initialization-script-and-noscript-fallback-pixel",
+      "featureTitle": "Install LinkedIn Insight Tag in the frontend HTML with partner ID placeholder, ensuring proper initialization script and noscript fallback pixel",
       "files": [
         "frontend/index.html",
-        "frontend/src/App.tsx"
+        "frontend/public/_headers"
       ],
       "components": [
         "authorization@4.0.0",
@@ -25,10 +25,10 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-google-search-console-verification-meta-tag-to-frontend-index-html-to-enable-console-access",
-      "featureTitle": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+      "featureId": "feature-implement-linkedin-conversion-tracking-for-advisory-application-submission-with-conversion-id-placeholder",
+      "featureTitle": "Implement LinkedIn conversion tracking for Advisory Application submission with conversion ID placeholder",
       "files": [
-        "frontend/index.html"
+        "frontend/src/pages/SecurityAdvisory.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -47,11 +47,11 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-documentation-file-with-instructions-for-granting-google-analytics-dashboard-access-and-google-search-console-permissions-to-the-project-owner-including-steps-to-obtain-and-securely-share-admin-credentials",
-      "featureTitle": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner, including steps to obtain and securely share admin credentials",
+      "featureId": "feature-implement-linkedin-conversion-tracking-for-strategy-call-click-with-conversion-id-placeholder",
+      "featureTitle": "Implement LinkedIn conversion tracking for Strategy Call Click with conversion ID placeholder",
       "files": [
-        "frontend/ANALYTICS_SETUP.md",
-        "frontend/src/pages/admin/CredentialsManagement.tsx"
+        "frontend/src/components/Header.tsx",
+        "frontend/src/pages/Home.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -66,6 +66,95 @@
       ],
       "testIds": [
         "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-linkedin-conversion-tracking-for-toolkit-purchase-with-conversion-id-placeholder-and-order-value",
+      "featureTitle": "Implement LinkedIn conversion tracking for Toolkit Purchase with conversion ID placeholder and order value",
+      "files": [
+        "frontend/src/pages/PaymentSuccess.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-linkedin-conversion-tracking-for-checklist-download-with-conversion-id-placeholder",
+      "featureTitle": "Implement LinkedIn conversion tracking for Checklist Download with conversion ID placeholder",
+      "files": [
+        "frontend/src/pages/FreeChecklist.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-install-meta-pixel-in-the-frontend-html-with-pixel-id-placeholder-for-future-ad-tracking",
+      "featureTitle": "Install Meta Pixel in the frontend HTML with pixel ID placeholder for future ad tracking",
+      "files": [
+        "frontend/index.html",
+        "frontend/public/_headers"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-setup-documentation-file-explaining-how-to-configure-linkedin-insight-tag-partner-id-conversion-ids-and-meta-pixel-id-with-step-by-step-instructions",
+      "featureTitle": "Create setup documentation file explaining how to configure LinkedIn Insight Tag partner ID, conversion IDs, and Meta Pixel ID with step-by-step instructions",
+      "files": [
+        "frontend/TRACKING_SETUP.md"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
       ],
       "confidence": "high"
     }

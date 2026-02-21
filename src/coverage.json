@@ -1,69 +1,114 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T19:30:05.000Z",
+  "generatedAt": "2026-02-20T19:44:25.548Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 7,
+    "implemented": 7,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Install Google Analytics tracking code in the frontend application with proper initialization in the main entry point or root layout component",
+        "summary": "Install LinkedIn Insight Tag in the frontend HTML with partner ID placeholder, ensuring proper initialization script and noscript fallback pixel",
         "status": "implemented",
         "plannedFiles": [
           "frontend/index.html",
-          "frontend/src/App.tsx"
+          "frontend/public/_headers"
         ],
         "matchedFiles": [
           "frontend/index.html",
-          "frontend/src/App.tsx"
+          "frontend/public/_headers"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Add Google Search Console verification meta tag to frontend/index.html to enable console access",
+        "summary": "Implement LinkedIn conversion tracking for Advisory Application submission with conversion ID placeholder",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/index.html"
+          "frontend/src/pages/SecurityAdvisory.tsx"
         ],
         "matchedFiles": [
-          "frontend/index.html"
+          "frontend/src/pages/SecurityAdvisory.tsx"
         ]
       },
       {
         "id": "REQ-3",
-        "summary": "Create documentation file with instructions for granting Google Analytics dashboard access and Google Search Console permissions to the project owner, including steps to obtain and securely share admin credentials",
+        "summary": "Implement LinkedIn conversion tracking for Strategy Call Click with conversion ID placeholder",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/ANALYTICS_SETUP.md",
-          "frontend/src/pages/admin/CredentialsManagement.tsx"
+          "frontend/src/components/Header.tsx",
+          "frontend/src/pages/Home.tsx"
         ],
         "matchedFiles": [
-          "frontend/ANALYTICS_SETUP.md",
-          "frontend/src/pages/admin/CredentialsManagement.tsx"
+          "frontend/src/components/Header.tsx",
+          "frontend/src/pages/Home.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Implement LinkedIn conversion tracking for Toolkit Purchase with conversion ID placeholder and order value",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/PaymentSuccess.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/PaymentSuccess.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Implement LinkedIn conversion tracking for Checklist Download with conversion ID placeholder",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/FreeChecklist.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/FreeChecklist.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Install Meta Pixel in the frontend HTML with pixel ID placeholder for future ad tracking",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/index.html",
+          "frontend/public/_headers"
+        ],
+        "matchedFiles": [
+          "frontend/index.html",
+          "frontend/public/_headers"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Create setup documentation file explaining how to configure LinkedIn Insight Tag partner ID, conversion IDs, and Meta Pixel ID with step-by-step instructions",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/TRACKING_SETUP.md"
+        ],
+        "matchedFiles": [
+          "frontend/TRACKING_SETUP.md"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
-    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/ANALYTICS_SETUP.md",
+    "frontend/TRACKING_SETUP.md",
     "frontend/index.html",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/pages/admin/CredentialsManagement.tsx",
+    "frontend/public/_headers",
+    "frontend/src/components/Header.tsx",
+    "frontend/src/lib/tracking.ts",
+    "frontend/src/pages/FreeChecklist.tsx",
+    "frontend/src/pages/Home.tsx",
+    "frontend/src/pages/PaymentSuccess.tsx",
+    "frontend/src/pages/SecurityAdvisory.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

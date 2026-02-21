@@ -2,8 +2,14 @@ import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Lock, Grid, Activity, CheckCircle2, ArrowRight, Target, Users, Briefcase } from 'lucide-react';
+import { trackLinkedInConversion } from '@/lib/tracking';
 
 export default function Home() {
+  const handleStrategyCallClick = () => {
+    // Fire LinkedIn conversion tracking before navigation
+    trackLinkedInConversion('XXXXXXX');
+  };
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -26,7 +32,12 @@ export default function Home() {
               Implement structured AI governance and cybersecurity systems in 30 days — or work directly with us for guided founder-level advisory.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-lg px-10 py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-emerald-500">
+              <Button 
+                asChild 
+                size="lg" 
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-lg px-10 py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-emerald-500"
+                onClick={handleStrategyCallClick}
+              >
                 <Link to="/security-advisory">Book Strategy Call</Link>
               </Button>
               <Button
@@ -175,7 +186,12 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
+            <Button 
+              asChild 
+              size="lg" 
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+              onClick={handleStrategyCallClick}
+            >
               <Link to="/security-advisory">Apply for Advisory</Link>
             </Button>
           </div>
@@ -244,70 +260,64 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-gradient-to-br from-emerald-50 to-white">
         <div className="container">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-12 text-center">
-              What You'll Get
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-12 text-center">What You'll Get</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card>
+              <Card className="border-2 border-emerald-200">
                 <CardHeader>
-                  <CardTitle className="text-navy">AI Governance Policy</CardTitle>
+                  <CardTitle className="text-navy flex items-center">
+                    <CheckCircle2 className="h-6 w-6 text-emerald-600 mr-2" />
+                    AI Governance Policy
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <img
-                    src="/assets/generated/ai-governance-policy-mockup.dim_800x600.png"
-                    alt="AI Governance Policy"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
                   <p className="text-gray-700">
-                    Comprehensive policy covering AI tool usage, data handling, and compliance requirements
+                    Structured policy document covering AI tool usage, data handling, and compliance requirements
+                    tailored to your startup.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 border-emerald-200">
                 <CardHeader>
-                  <CardTitle className="text-navy">Risk Register Dashboard</CardTitle>
+                  <CardTitle className="text-navy flex items-center">
+                    <CheckCircle2 className="h-6 w-6 text-emerald-600 mr-2" />
+                    Risk Register Dashboard
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <img
-                    src="/assets/generated/risk-register-dashboard-mockup.dim_800x600.png"
-                    alt="Risk Register Dashboard"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
                   <p className="text-gray-700">
-                    Live dashboard to track and prioritize security risks across your organization
+                    Comprehensive risk tracking system with severity scoring, mitigation plans, and executive reporting
+                    templates.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 border-emerald-200">
                 <CardHeader>
-                  <CardTitle className="text-navy">Incident Response Playbook</CardTitle>
+                  <CardTitle className="text-navy flex items-center">
+                    <CheckCircle2 className="h-6 w-6 text-emerald-600 mr-2" />
+                    Incident Response Playbook
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <img
-                    src="/assets/generated/incident-response-playbook-mockup.dim_800x600.png"
-                    alt="Incident Response Playbook"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
                   <p className="text-gray-700">
-                    Step-by-step procedures for handling security incidents and data breaches
+                    Step-by-step procedures for handling security incidents, including escalation paths and
+                    communication templates.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="border-2 border-emerald-200">
                 <CardHeader>
-                  <CardTitle className="text-navy">Executive KPI Dashboard</CardTitle>
+                  <CardTitle className="text-navy flex items-center">
+                    <CheckCircle2 className="h-6 w-6 text-emerald-600 mr-2" />
+                    Executive KPI Dashboard
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <img
-                    src="/assets/generated/executive-kpi-dashboard-mockup.dim_800x600.png"
-                    alt="Executive KPI Dashboard"
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
                   <p className="text-gray-700">
-                    Real-time security metrics and compliance status for leadership visibility
+                    Security metrics and KPIs for board reporting, investor updates, and internal tracking of security
+                    posture.
                   </p>
                 </CardContent>
               </Card>
@@ -317,74 +327,21 @@ export default function Home() {
       </section>
 
       {/* DIY Toolkit Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white border-t border-gray-200">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
-                Prefer to Build It Yourself?
-              </h2>
-              <p className="text-lg text-gray-700 mb-8">
-                Get our complete Security Toolkit with templates, frameworks, and implementation guides
-              </p>
-            </div>
-
-            <Card className="border-2 border-gray-200">
-              <CardHeader>
-                <CardTitle className="text-2xl text-navy">Security Toolkit</CardTitle>
-                <CardDescription>Complete DIY implementation package</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">AI Governance Policy Template</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Risk Register Framework</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Incident Response Playbook</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle2 className="h-5 w-5 text-emerald-600 flex-shrink-0 mt-1" />
-                    <span className="text-gray-700">Executive Dashboard Templates</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-3xl font-bold text-navy">₹9,999</p>
-                    <p className="text-sm text-gray-600">One-time payment</p>
-                  </div>
-                  <Button asChild size="lg" variant="outline" className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50">
-                    <Link to="/toolkit">
-                      View Toolkit <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-navy to-emerald-900 text-white">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Stop Guessing. Start Securing.
-            </h2>
-            <p className="text-lg text-white/90 mb-8">
-              Apply for founder-level advisory or download our free AI Risk Checklist to get started
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">Prefer to DIY?</h2>
+            <p className="text-lg text-gray-700 mb-8">
+              Get our complete Security Toolkit with templates, frameworks, and implementation guides. Perfect for
+              technical founders who want to implement security systems themselves.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold">
-                <Link to="/security-advisory">Book Strategy Call</Link>
+              <Button asChild size="lg" variant="outline" className="border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50">
+                <Link to="/toolkit">
+                  View Security Toolkit <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-2 border-white/30">
+              <Button asChild size="lg" variant="outline">
                 <Link to="/free-checklist">Download Free Checklist</Link>
               </Button>
             </div>

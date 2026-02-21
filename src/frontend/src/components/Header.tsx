@@ -2,9 +2,15 @@ import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { trackLinkedInConversion } from '@/lib/tracking';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleStrategyCallClick = () => {
+    // Fire LinkedIn conversion tracking before navigation
+    trackLinkedInConversion('XXXXXXX');
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
@@ -76,7 +82,11 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md hover:shadow-lg transition-all">
+            <Button 
+              asChild 
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold shadow-md hover:shadow-lg transition-all"
+              onClick={handleStrategyCallClick}
+            >
               <Link to="/security-advisory">Book Strategy Call</Link>
             </Button>
           </div>
@@ -144,8 +154,15 @@ export default function Header() {
               >
                 Contact
               </Link>
-              <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold w-full">
-                <Link to="/security-advisory" onClick={() => setMobileMenuOpen(false)}>
+              <Button 
+                asChild 
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold w-full"
+                onClick={() => {
+                  handleStrategyCallClick();
+                  setMobileMenuOpen(false);
+                }}
+              >
+                <Link to="/security-advisory">
                   Book Strategy Call
                 </Link>
               </Button>

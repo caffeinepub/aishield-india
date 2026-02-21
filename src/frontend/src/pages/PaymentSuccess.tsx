@@ -1,9 +1,25 @@
+import { useEffect, useRef } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle2, Download, Mail } from 'lucide-react';
+import { trackLinkedInConversion } from '@/lib/tracking';
 
 export default function PaymentSuccess() {
+  const hasTracked = useRef(false);
+
+  useEffect(() => {
+    // Fire LinkedIn conversion tracking only once
+    if (!hasTracked.current) {
+      // Extract order value from URL parameters if available
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderValue = urlParams.get('amount') ? parseFloat(urlParams.get('amount')!) : undefined;
+      
+      trackLinkedInConversion('XXXXXXX', orderValue);
+      hasTracked.current = true;
+    }
+  }, []);
+
   return (
     <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 py-12">
       <div className="container max-w-2xl">
